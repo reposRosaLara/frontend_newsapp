@@ -1,0 +1,16 @@
+<app-cards [newsArray]="news" [showAddHiddeDelete]="showAddHiddeDelete"></app-cards>
+
+<mat-paginator
+    [length]="length"
+    [pageSize]="pageSize"
+    [hidePageSize]="hidePageSize"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"
+    (page)="events($event)">
+
+</mat-paginator>
+
+
+ 
+
+

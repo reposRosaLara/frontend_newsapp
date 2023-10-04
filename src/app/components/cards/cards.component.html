@@ -1,0 +1,49 @@
+<div class="container">
+
+  <form [formGroup]="searchForm" class="d-flex justify-content-center align-self-center">
+    <mat-form-field>
+      <button *ngIf="searchText" mat-button matSuffix (click)="searchText = ''">
+        <mat-icon>cancel</mat-icon>
+      </button>
+      <mat-label>Buscar</mat-label>
+      <input
+        matInput
+        aria-label="news"
+        [(ngModel)]="searchText"
+        formControlName="searchBar">
+    </mat-form-field>
+  </form>
+  
+  
+  <div *ngFor="let news of newsArray | search: searchText" >
+      <div class="blog-card alt">
+          <div class="meta">
+            <div class="photo" style="background-image: url({{news.image_url}})"></div>
+            <ul class="details">
+              <li class="date">publicado el {{news.published_at | date: 'dd MMM yyyy'}}</li>
+              <li class="author"><a>por {{news.news_site}}</a></li>
+              <li class="added" *ngIf=!showAddHiddeDelete><a>agregado a favoritos el {{news.addedToFav_at | date: 'dd MMM yyyy'}}</a></li>
+            </ul>
+          </div>
+          <div class="description">
+              <h1>{{news.title}}</h1>
+              <h2>{{news.news_site}}</h2>
+              <p> {{news.summary}}</p>
+            <div class="wrap row">
+              <p class="read-more col-md-6"><a href="{{news.url}}">Leer noticia completa</a></p>
+              <p class="read-more col-md-6"><a href="#" *ngIf=showAddHiddeDelete value=news (click)="AgregarFavoritos(news)">Agregar a favoritos</a></p>
+              <p class="read-more col-md-6"><a href="#" *ngIf=!showAddHiddeDelete value=news (click)="EliminarFavoritos(news)">Eliminar de favoritos</a></p>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+  
+
+
+
+
+
+
+
+
